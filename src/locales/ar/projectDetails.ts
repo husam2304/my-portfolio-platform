@@ -1,0 +1,15 @@
+export const projectDetailsAr = {
+    caseStudy: 'دراسة حالة',
+    architecturalOverview: 'نظرة عامة معمارية',
+    codeHighlights: 'أبرز الأكواد',
+    client: 'العميل',
+    techStack: 'tech Stack',
+    timeline: 'الجدول الزمني',
+    edgeLayer: 'طبقة الحافة',
+    regionalMesh: 'شبكة إقليمية',
+    error: 'خطأ في تحميل تفاصيل المشروع',
+    overviewTitle: 'نظرة عامة',
+    overviewDescription: 'وصف النظرة العامة',
+    codehighlightsTitle: 'أبرز الأكواد',
+    codeHighlightsDescription: 'وصف أبرز الأكواد',
+};

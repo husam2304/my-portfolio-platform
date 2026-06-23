@@ -1,0 +1,15 @@
+export const projectDetailsEn = {
+    caseStudy: 'Case Study',
+    architecturalOverview: 'Architectural Overview',
+    codeHighlights: 'Code Highlights',
+    client: 'Client',
+    techStack: 'Tech Stack',
+    timeline: 'Timeline',
+    edgeLayer: 'Edge Layer',
+    regionalMesh: 'Regional Mesh',
+    error: 'Error loading project details',
+    overviewTitle: 'Overview',
+    overviewDescription: 'Description of the overview',
+    codehighlightsTitle: 'Code Highlights',
+    codeHighlightsDescription: 'Description of the code highlights',
+};
