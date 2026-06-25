@@ -65,9 +65,14 @@ export const HeroSection = () => {
                 {/* CTA Buttons */}
                 <div className="flex flex-wrap gap-4">
 
-                    <button className="border border-outline-variant px-8 py-4 font-label-caps text-label-caps font-bold rounded-lg hover:border-primary-fixed-dim hover:text-primary-fixed-dim transition-all active:scale-95">
+                    <a
+                        href="https://github.com/husam2304/my-portfolio-platform"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block border border-outline-variant px-8 py-4 font-label-caps text-label-caps font-bold rounded-lg hover:border-primary-fixed-dim hover:text-primary-fixed-dim transition-all active:scale-95"
+                    >
                         {t.viewSourceCode}
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
