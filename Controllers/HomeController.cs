@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.API.Data;
 using Portfolio.API.DTOs;
@@ -13,6 +14,20 @@ namespace Portfolio.API.Controllers;
 [Route("api/[controller]")]
 public class HomeController(AppDbContext db) : ControllerBase
 {
+    [HttpGet("debug-url")]
+    public IActionResult DebugUrl()
+    {
+        return Ok(new
+        {
+            Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"),
+            Scheme = Request.Scheme,
+            Host = Request.Host.ToString(),
+            PathBase = Request.PathBase.ToString(),
+            RawPath = "/uploads/test.webp",
+            Absolute = UriHelper.GetAbsoluteUrl(Request, "/uploads/test.webp"),
+            Version = "debug-absolute-url-v1"
+        });
+    }
     /// <summary>
     /// GET hero — language resolved from Accept-Language header (en | ar, default en).
     /// </summary>
