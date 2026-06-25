@@ -7,6 +7,7 @@ using Portfolio.API.Data;
 using Portfolio.API.Services;
 using Portfolio.API.Interfaces;
 using Portfolio.API.DTOs.Contact;
+using Microsoft.AspNetCore.HttpOverrides;
 var builder = WebApplication.CreateBuilder(args);
 
 // ── Database ─────────────────────────────────────────────────
@@ -54,6 +55,16 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor |
+        ForwardedHeaders.XForwardedProto |
+        ForwardedHeaders.XForwardedHost;
+
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
 // ── Controllers + JSON ───────────────────────────────────────
 builder.Services.AddControllers()
     .AddJsonOptions(opts =>
@@ -96,6 +107,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+app.UseForwardedHeaders();
 // ── Migrate + optional seed ───────────────────────────────────
 using (var scope = app.Services.CreateScope())
 {
