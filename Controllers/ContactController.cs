@@ -67,7 +67,7 @@ public class ContactController(AppDbContext db, IEmailService _emailService) : C
     {
         var specs = await db.ContactSpecs
             .OrderBy(s => s.SortOrder)
-            .Select(s => new ContactSpecDto(s.Label, s.Value))
+            .Select(s => new ContactSpecDto(s.Id,s.Label, s.Value))
             .ToListAsync();
         return Ok(ApiResult.Ok(new ContactSpecsDataDto(specs)));
     }
@@ -79,7 +79,7 @@ public class ContactController(AppDbContext db, IEmailService _emailService) : C
         var spec = new ContactSpec { Label = request.Label, Value = request.Value, SortOrder = request.SortOrder };
         db.ContactSpecs.Add(spec);
         await db.SaveChangesAsync();
-        return Ok(ApiResult.Ok(new ContactSpecDto(spec.Label, spec.Value)));
+        return Ok(ApiResult.Ok(new ContactSpecDto(spec.Id, spec.Label, spec.Value)));
     }
 
     [Authorize(Roles = "Admin")]
@@ -90,7 +90,7 @@ public class ContactController(AppDbContext db, IEmailService _emailService) : C
         if (spec is null) return NotFound(ApiResult.Fail<ContactSpecDto>("Spec not found."));
         spec.Label = request.Label; spec.Value = request.Value; spec.SortOrder = request.SortOrder;
         await db.SaveChangesAsync();
-        return Ok(ApiResult.Ok(new ContactSpecDto(spec.Label, spec.Value)));
+        return Ok(ApiResult.Ok(new ContactSpecDto(spec.Id, spec.Label, spec.Value)));
     }
 
     [Authorize(Roles = "Admin")]

@@ -1,3 +1,3 @@
 ﻿namespace Portfolio.API.DTOs.Contact;
 
-public record ContactSpecDto(string Label, string Value);
+public record ContactSpecDto(int Id,string Label, string Value);

@@ -21,7 +21,7 @@ public class ResumeController(AppDbContext db, IFileService fileService, IWebHos
     {
         var items = await db.TechStackItems
             .OrderBy(i => i.SortOrder)
-            .Select(i => new TechStackItemDto(i.Category, i.Value))
+            .Select(i => new TechStackItemDto(i.Id,i.Category, i.Value))
             .ToListAsync();
         return Ok(ApiResult.Ok(new TechStackDataDto(items)));
     }
@@ -33,7 +33,7 @@ public class ResumeController(AppDbContext db, IFileService fileService, IWebHos
         var item = new TechStackItem { Category = request.Category, Value = request.Value, SortOrder = request.SortOrder };
         db.TechStackItems.Add(item);
         await db.SaveChangesAsync();
-        return Ok(ApiResult.Ok(new TechStackItemDto(item.Category, item.Value)));
+        return Ok(ApiResult.Ok(new TechStackItemDto(item.Id,item.Category, item.Value)));
     }
 
     [Authorize(Roles = "Admin")]
@@ -44,7 +44,7 @@ public class ResumeController(AppDbContext db, IFileService fileService, IWebHos
         if (item is null) return NotFound(ApiResult.Fail<TechStackItemDto>("Item not found."));
         item.Category = request.Category; item.Value = request.Value; item.SortOrder = request.SortOrder;
         await db.SaveChangesAsync();
-        return Ok(ApiResult.Ok(new TechStackItemDto(item.Category, item.Value)));
+        return Ok(ApiResult.Ok(new TechStackItemDto(item.Id, item.Category, item.Value)));
     }
 
     [Authorize(Roles = "Admin")]
@@ -65,7 +65,7 @@ public class ResumeController(AppDbContext db, IFileService fileService, IWebHos
     {
         var items = await db.Certifications
             .OrderBy(c => c.SortOrder)
-            .Select(c => new CertificationDto(c.Title, c.Level, c.Year))
+            .Select(c => new CertificationDto(c.Id,c.Title, c.Level, c.Year))
             .ToListAsync();
         return Ok(ApiResult.Ok(new CertificationsDataDto(items)));
     }
@@ -77,7 +77,7 @@ public class ResumeController(AppDbContext db, IFileService fileService, IWebHos
         var item = new Certification { Title = request.Title, Level = request.Level, Year = request.Year, SortOrder = request.SortOrder };
         db.Certifications.Add(item);
         await db.SaveChangesAsync();
-        return Ok(ApiResult.Ok(new CertificationDto(item.Title, item.Level, item.Year)));
+        return Ok(ApiResult.Ok(new CertificationDto(item.Id,item.Title, item.Level, item.Year)));
     }
 
     [Authorize(Roles = "Admin")]
@@ -88,7 +88,7 @@ public class ResumeController(AppDbContext db, IFileService fileService, IWebHos
         if (item is null) return NotFound(ApiResult.Fail<CertificationDto>("Certification not found."));
         item.Title = request.Title; item.Level = request.Level; item.Year = request.Year; item.SortOrder = request.SortOrder;
         await db.SaveChangesAsync();
-        return Ok(ApiResult.Ok(new CertificationDto(item.Title, item.Level, item.Year)));
+        return Ok(ApiResult.Ok(new CertificationDto(item.Id, item.Title, item.Level, item.Year)));
     }
 
     [Authorize(Roles = "Admin")]
@@ -109,7 +109,7 @@ public class ResumeController(AppDbContext db, IFileService fileService, IWebHos
     {
         var items = await db.EducationItems
             .OrderBy(e => e.SortOrder)
-            .Select(e => new EducationItemDto(e.Degree, e.Institution, e.Period, e.Focus))
+            .Select(e => new EducationItemDto(e.Id,e.Degree, e.Institution, e.Period, e.Focus))
             .ToListAsync();
         return Ok(ApiResult.Ok(new EducationDataDto(items)));
     }
@@ -121,7 +121,7 @@ public class ResumeController(AppDbContext db, IFileService fileService, IWebHos
         var item = new EducationItem { Degree = request.Degree, Institution = request.Institution, Period = request.Period, Focus = request.Focus, SortOrder = request.SortOrder };
         db.EducationItems.Add(item);
         await db.SaveChangesAsync();
-        return Ok(ApiResult.Ok(new EducationItemDto(item.Degree, item.Institution, item.Period, item.Focus)));
+        return Ok(ApiResult.Ok(new EducationItemDto(item.Id, item.Degree, item.Institution, item.Period, item.Focus)));
     }
 
     [Authorize(Roles = "Admin")]
@@ -133,7 +133,7 @@ public class ResumeController(AppDbContext db, IFileService fileService, IWebHos
         item.Degree = request.Degree; item.Institution = request.Institution;
         item.Period = request.Period; item.Focus = request.Focus; item.SortOrder = request.SortOrder;
         await db.SaveChangesAsync();
-        return Ok(ApiResult.Ok(new EducationItemDto(item.Degree, item.Institution, item.Period, item.Focus)));
+        return Ok(ApiResult.Ok(new EducationItemDto(item.Id, item.Degree, item.Institution, item.Period, item.Focus)));
     }
 
     [Authorize(Roles = "Admin")]
