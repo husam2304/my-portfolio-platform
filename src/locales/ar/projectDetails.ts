@@ -12,4 +12,10 @@ export const projectDetailsAr = {
     overviewDescription: 'وصف النظرة العامة',
     codehighlightsTitle: 'أبرز الأكواد',
     codeHighlightsDescription: 'وصف أبرز الأكواد',
+    links: "روابط المشروع",
+    viewProject: "عرض المشروع",
+    website: "الموقع الإلكتروني",
+    appLink: "رابط التطبيق",
+    github: "GitHub",
+    media: "وسائط"
 };

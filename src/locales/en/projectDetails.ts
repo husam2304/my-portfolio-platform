@@ -12,4 +12,10 @@ export const projectDetailsEn = {
     overviewDescription: 'Description of the overview',
     codehighlightsTitle: 'Code Highlights',
     codeHighlightsDescription: 'Description of the code highlights',
+    links: "Project Links",
+    viewProject: "View Project",
+    website: "Website",
+    appLink: "App Link",
+    github: "GitHub",
+    media: "Media"
 };

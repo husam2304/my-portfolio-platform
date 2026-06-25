@@ -7,5 +7,6 @@ export const aboutAr = {
     },
     expertise: {
         error: "حدث خطأ أثناء تحميل بيانات الخبرة",
+        technicalExpertise: "الخبرة التقنية"
     },
 }

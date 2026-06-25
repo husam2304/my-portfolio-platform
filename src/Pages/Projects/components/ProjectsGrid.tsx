@@ -34,8 +34,7 @@ const ProjectCard = ({ index, id, title, description, imageUrl, tags, isFeatured
     };
 
     const hasImage = imageUrl && imageUrl !== '';
-    console.log('ProjectCard Rendered:', { index, title, isFeatured, hasImage });
-
+    console.log('ProjectCard render:', { index, id, title, hasImage, isFeatured });
     if (isFeatured && hasImage) {
         return (
             <article className={`project-card cursor-pointer ${getGridClass(index)} group bg-surface-container-low border border-outline-variant/10 overflow-hidden transition-all duration-300 flex flex-col`}

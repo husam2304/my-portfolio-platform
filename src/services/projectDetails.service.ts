@@ -34,7 +34,30 @@ export type ProjectDetails = {
     }[];
     codeHighlights: CodeHighlight[];
     codeSnippet: string;
+    isFeatured: boolean;
+    sortOrder: number;
+    tags: string[];
+    media?: ProjectMediaDto[];
+    viewLink?: string;
+    githubLink?: string;
+    websiteLink?: string;
+    appLink?: string;
 };
+
+export type ProjectMediaDto = {
+    url: string;
+    type: ProjectMediaType;
+};
+export const ProjectMediaType = {
+    Video: 0,
+    Image: 1,
+    Audio: 2,
+    Docs: 3,
+} as const;
+
+export type ProjectMediaType =
+    typeof ProjectMediaType[keyof typeof ProjectMediaType];
+
 
 export type ProjectDetailsData = {
     project: ProjectDetails;

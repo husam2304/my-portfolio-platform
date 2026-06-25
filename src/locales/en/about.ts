@@ -7,5 +7,7 @@ export const aboutEn = {
     },
     expertise: {
         error: "An error occurred while loading expertise data",
+        technicalExpertise: "Technical Expertise"
+
     },
 }
