@@ -27,7 +27,7 @@ public class AboutController(AppDbContext db, IFileService fileService) : Contro
 
         return Ok(ApiResult.Ok(new PhilosophyDto(
             p.Label, p.Title, p.Description,
-            UriHelper.GetAbsoluteUrl(Request, p.ImageUrl))));
+            URIHelper.GetAbsoluteUrl(Request, p.ImageUrl))));
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ public class AboutController(AppDbContext db, IFileService fileService) : Contro
         await db.SaveChangesAsync();
         return Ok(ApiResult.Ok(new PhilosophyDto(
             p.Label, p.Title, p.Description,
-            UriHelper.GetAbsoluteUrl(Request, p.ImageUrl))));
+            URIHelper.GetAbsoluteUrl(Request, p.ImageUrl))));
     }
 
     // ── Expertise / Skills (lang-neutral — unchanged) ────────

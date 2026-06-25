@@ -341,7 +341,7 @@ public class ProjectsController(AppDbContext db, IFileService fileService) : Con
             p.Id.ToString(),
             localisation?.Title ?? (lang == LanguageHelper.En ? "need to translate" : "بحاجة للترجمة"),
             localisation?.Description ?? (lang == LanguageHelper.En ? "need to translate" : "بحاجة للترجمة"),
-            UriHelper.GetAbsoluteUrl(request, p.ImageUrl),
+            URIHelper.GetAbsoluteUrl(request, p.ImageUrl),
             p.Tags.Select(t => t.Tag).ToList(),
             p.IsFeatured,
             localisation == null
@@ -359,10 +359,10 @@ public class ProjectsController(AppDbContext db, IFileService fileService) : Con
     localisation?.CaseStudyLabel ?? string.Empty,
     localisation?.Title ?? "",
     localisation?.Description ?? "",
-    UriHelper.GetAbsoluteUrl(request, p.ImageUrl),
+    URIHelper.GetAbsoluteUrl(request, p.ImageUrl),
 
     p.ProjectMedia.Select(m => new ProjectMediaDto(
-        UriHelper.GetAbsoluteUrl(request, m.MediaUri),
+        URIHelper.GetAbsoluteUrl(request, m.MediaUri),
         m.Type))
     .ToList(),
         new ProjectMetaDto(p.MetaClient ?? "", p.MetaTechStack ?? "", p.MetaTimeline ?? ""),

@@ -27,7 +27,7 @@ public class HomeController(AppDbContext db) : ControllerBase
             $"{Request.Scheme}://{Request.Host}{Request.PathBase}{normalizedPath}";
 
         var helperAbsolute =
-            UriHelper.GetAbsoluteUrl(Request, rawPath);
+            URIHelper.GetAbsoluteUrl(Request, rawPath);
 
         return Ok(new
         {
