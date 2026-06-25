@@ -1,26 +1,13 @@
-import { CheckCircle2, Code2, Database, FileText, Globe, Shield, Zap } from "lucide-react";
 import { useLang } from "../../../context/Language/useLang";
 import type { ProjectDetails } from "../../../services/projectDetails.service";
+import { IconComponent } from "../../../components/IconComponent";
 
 export const ProjectDetailsCodeHighlights = ({ data }: { data: ProjectDetails }) => {
     const project = data;
     const { t: { projectDetails: t } } = useLang();
     console.log("Project in Code Highlights:", data);
 
-    // Dynamic icon component for code highlights
-    const getHighlightIcon = (iconName: string) => {
-        const iconMap: Record<string, React.ReactNode> = {
-            'typescript': <FileText className="text-primary-container" size={20} />,
-            'react': <Code2 className="text-primary-container" size={20} />,
-            'database': <Database className="text-primary-container" size={20} />,
-            'api': <Globe className="text-primary-container" size={20} />,
-            'security': <Shield className="text-primary-container" size={20} />,
-            'performance': <Zap className="text-primary-container" size={20} />,
-            'testing': <CheckCircle2 className="text-primary-container" size={20} />,
-        };
 
-        return iconMap[iconName] || <Code2 className="text-primary-container" size={20} />;
-    };
 
     return (
         <section className="mb-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -36,7 +23,7 @@ export const ProjectDetailsCodeHighlights = ({ data }: { data: ProjectDetails })
                             className="p-4 rounded-lg bg-surface-container-high border border-outline-variant hover:border-primary-container transition-all cursor-default"
                         >
                             <div className="flex items-center gap-3 mb-2">
-                                {getHighlightIcon(highlight.icon)}
+                                <IconComponent icon={highlight.icon} />
                                 <span className="mono text-xs font-bold text-on-surface">
                                     {highlight.title}
                                 </span>

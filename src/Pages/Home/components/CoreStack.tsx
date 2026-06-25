@@ -4,28 +4,15 @@ import { LoadingIndicator } from "../../../components/ui/LoadingIndicator";
 import { useLang } from "../../../context/Language/useLang";
 import type { TechCardProps } from "../../../types/api";
 import { coreStackService } from "../../../services/coreStack.service";
-import { Cloud, Container, Cpu, Database, Layers, Server, Shield } from "lucide-react";
+import { IconComponent } from "../../../components/IconComponent";
 
 
 
 const TechCard = ({ icon, name }: TechCardProps) => {
-    const getIconComponent = (iconName: string) => {
-        // This is a basic mapping - you might want to create a more comprehensive one
-        const iconMap: Record<string, React.ReactNode> = {
-            'database': <Database className="text-primary-container mb-4" size={36} />,
-            'server': <Server className="text-primary-container mb-4" size={36} />,
-            'cloud': <Cloud className="text-primary-container mb-4" size={36} />,
-            'shield': <Shield className="text-primary-container mb-4" size={36} />,
-            'cpu': <Cpu className="text-primary-container mb-4" size={36} />,
-            'layers': <Layers className="text-primary-container mb-4" size={36} />,
-            'container': <Container className="text-primary-container mb-4" size={36} />,
-        };
 
-        return iconMap[iconName] || <Layers className="text-primary-container mb-4" size={36} />;
-    };
     return (
         <div className="glass-card min-w-1/6 p-6 flex flex-col items-center justify-center gap-4 group">
-            {getIconComponent(icon)}
+            <IconComponent icon={icon} />
 
 
             <span className="font-label-caps text-label-caps text-on-surface-variant">

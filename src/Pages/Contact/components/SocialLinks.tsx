@@ -5,6 +5,7 @@ import type { SocialLinksData } from '../../../services/contact.service';
 import { useLang } from '../../../context/Language/useLang';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { IconComponent } from '../../../components/IconComponent';
 
 export const SocialLinks = () => {
     const { t } = useLang();
@@ -50,11 +51,7 @@ export const SocialLinks = () => {
                             rel="noopener noreferrer"
                             className="group flex items-center gap-4 p-4 border border-outline-variant/10 bg-surface-container-low hover:bg-surface-container-high transition-all"
                         >
-                            <img
-                                src={link.icon}
-                                alt={link.name}
-                                className="material-symbols-outlined text-primary-fixed-dim"
-                            />
+                            <IconComponent icon={link.icon} />
                             <div className="flex flex-col">
                                 <span className="font-label-caps text-label-caps text-on-surface">
                                     {link.name}

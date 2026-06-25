@@ -1,24 +1,10 @@
-import { Cloud, Container, Cpu, Database, Layers, Server, Shield } from "lucide-react";
 import type { ProjectDetails } from "../../../services/projectDetails.service";
+import { IconComponent } from "../../../components/IconComponent";
 
 export const ProjectDetailsArchitecture = ({ data }: { data: ProjectDetails }) => {
     const project = data;
 
-    // Dynamic icon component
-    const getIconComponent = (iconName: string) => {
-        // This is a basic mapping - you might want to create a more comprehensive one
-        const iconMap: Record<string, React.ReactNode> = {
-            'database': <Database className="text-primary-container mb-4" size={36} />,
-            'server': <Server className="text-primary-container mb-4" size={36} />,
-            'cloud': <Cloud className="text-primary-container mb-4" size={36} />,
-            'shield': <Shield className="text-primary-container mb-4" size={36} />,
-            'cpu': <Cpu className="text-primary-container mb-4" size={36} />,
-            'layers': <Layers className="text-primary-container mb-4" size={36} />,
-            'container': <Container className="text-primary-container mb-4" size={36} />,
-        };
 
-        return iconMap[iconName] || <Layers className="text-primary-container mb-4" size={36} />;
-    };
 
     return (
         <section className="mb-24">
@@ -49,7 +35,7 @@ export const ProjectDetailsArchitecture = ({ data }: { data: ProjectDetails }) =
                                 <div className={`glass p-6 rounded-lg border flex flex-col items-center text-center ${index === 0 ? 'border-primary-container/20' : 'border-outline-variant'
                                     }`}>
                                     <div className={index === 0 ? 'text-primary-container' : 'text-secondary'}>
-                                        {getIconComponent(element.icon)}
+                                        <IconComponent icon={element.icon} />
                                     </div>
                                     <h3 className="mono text-xs font-bold text-white mb-2">
                                         {element.name}

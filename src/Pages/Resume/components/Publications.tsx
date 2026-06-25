@@ -3,6 +3,7 @@ import { LoadingIndicator } from '../../../components/ui/LoadingIndicator';
 import { resumeService } from '../../../services/resume.service';
 import type { PublicationsData } from '../../../services/resume.service';
 import { useLang } from '../../../context/Language/useLang';
+import { IconComponent } from '../../../components/IconComponent';
 
 export const Publications = () => {
     const { t: { resume: { publications: t } } } = useLang();
@@ -42,12 +43,7 @@ export const Publications = () => {
                         className="glass-panel p-6 rounded-lg kinetic-border cursor-pointer transition-transform hover:-translate-y-1"
                     >
                         <div className="flex justify-between items-start mb-4">
-                            <span
-                                className="material-symbols-outlined text-primary-fixed-dim"
-                                data-icon={pub.icon}
-                            >
-                                {pub.icon}
-                            </span>
+                            <IconComponent icon={pub.icon} />
                             <span className="font-code-sm text-outline text-xs">{pub.source}</span>
                         </div>
                         <h4 className="font-label-caps text-on-surface mb-2">{pub.title}</h4>

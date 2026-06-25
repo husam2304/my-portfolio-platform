@@ -3,15 +3,8 @@ import { LoadingIndicator } from "../../../components/ui/LoadingIndicator";
 import { aboutService } from "../../../services/about.service";
 import type { ExpertiseData, Skill } from "../../../services/about.service";
 import { useLang } from "../../../context/Language/useLang";
-import * as LucideIcons from "lucide-react";
-import type { LucideProps } from "lucide-react";
+import { IconComponent } from "../../../components/IconComponent";
 
-// Dynamic icon resolver
-const DynamicIcon = ({ name, ...props }: { name: string } & LucideProps) => {
-    const Icon = (LucideIcons as Record<string, any>)[name];
-    if (!Icon) return <LucideIcons.CircleDashed {...props} />; // fallback
-    return <Icon {...props} />;
-};
 export const ExpertiseGrid = () => {
     const { t: { about: { expertise: t } }, lang } = useLang()
     const { data, isLoading, isError } = useQuery<ExpertiseData>({
@@ -50,7 +43,7 @@ export const ExpertiseGrid = () => {
         <div className="glass-card p-8 flex flex-col gap-6 min-h-64">
             <div className="w-10 h-10 rounded-lg bg-surface-container-high
                         flex items-center justify-center shrink-0">
-                <DynamicIcon name={skill.icon} size={20} className="text-primary-fixed-dim" />
+                <IconComponent icon={skill.icon} />
             </div>
             <div className="flex flex-col gap-2 flex-1">
                 <h3 className="font-headline-md text-headline-md text-on-surface">{skill.title}</h3>
