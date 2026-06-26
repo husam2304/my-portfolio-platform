@@ -6,8 +6,8 @@ import { Projects } from '../Pages/Projects'
 import { ProjectDetails } from '../Pages/ProjectDetails'
 import { Resume } from '../Pages/Resume'
 import { Contact } from '../Pages/Contact'
-
 function Approute() {
+
     return (
         <Routes>
             <Route element={<MainLayout />}>

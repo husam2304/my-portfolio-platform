@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { LangProvider } from './context/Language/LangProvider.tsx'
 import { ThemeProvider } from './context/Theme/ThemeProvider.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
+import { Analytics } from './lib/analytics.ts'
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
@@ -16,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
         <LangProvider>
 
           <BrowserRouter>
+            <Analytics />
             <div id="Body" className="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
               <App />
             </div>
