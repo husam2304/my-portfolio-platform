@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Portfolio.API.Models;
+using System.Reflection.Emit;
 
 namespace Portfolio.API.Data;
 
@@ -46,6 +47,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<ContactSpec> ContactSpecs => Set<ContactSpec>();
 
     public DbSet<ContactMessage> ContactMessages { get; set; }
+
+    // Companies
+    public DbSet<Company> Companies => Set<Company>();
+    public DbSet<JobApplication> JobApplications => Set<JobApplication>();
+
+
     protected override void OnModelCreating(ModelBuilder mb)
     {
         base.OnModelCreating(mb);
@@ -94,5 +101,14 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         mb.Entity<ExperienceTag>()
             .HasOne(t => t.ExperienceItem).WithMany(e => e.Tags)
             .HasForeignKey(t => t.ExperienceItemId).OnDelete(DeleteBehavior.Cascade);
+
+
+        mb.Entity<JobApplication>()
+            .HasOne(j => j.Company)
+            .WithMany(c => c.JobApplications)
+            .HasForeignKey(j => j.CompanyId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+
     }
 }

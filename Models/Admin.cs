@@ -1,4 +1,6 @@
-﻿namespace Portfolio.API.Models;
+﻿using Microsoft.AspNetCore.Builder;
+
+namespace Portfolio.API.Models;
 
 // ── Admin ────────────────────────────────────────────────────
 public class Admin
