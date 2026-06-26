@@ -14,33 +14,6 @@ namespace Portfolio.API.Controllers;
 [Route("api/[controller]")]
 public class HomeController(AppDbContext db) : ControllerBase
 {
-    [HttpGet("debug-url")]
-    public IActionResult DebugUrl()
-    {
-        var rawPath = "/uploads/test.webp";
-
-        var normalizedPath = rawPath.StartsWith("/")
-            ? rawPath
-            : $"/{rawPath}";
-
-        var inlineAbsolute =
-            $"{Request.Scheme}://{Request.Host}{Request.PathBase}{normalizedPath}";
-
-        var helperAbsolute =
-            URIHelper.GetAbsoluteUrl(Request, rawPath);
-
-        return Ok(new
-        {
-            Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"),
-            Scheme = Request.Scheme,
-            Host = Request.Host.ToString(),
-            PathBase = Request.PathBase.ToString(),
-            RawPath = rawPath,
-            InlineAbsolute = inlineAbsolute,
-            HelperAbsolute = helperAbsolute,
-            Version = "debug-absolute-url-v2"
-        });
-    }
     /// <summary>
     /// GET hero — language resolved from Accept-Language header (en | ar, default en).
     /// </summary>
