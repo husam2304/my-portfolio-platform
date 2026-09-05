@@ -1,0 +1,63 @@
+name: Deploy to SmarterASP.NET
+on:
+  push:
+    branches:
+      - BackEnd
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+    
+    - name: Restore
+      run: dotnet restore './Portfolio.API.csproj'
+    
+    - name: Build
+      run: dotnet build './Portfolio.API.csproj' -c Release --no-restore
+    
+    - name: Publish
+      run: dotnet publish './Portfolio.API.csproj' -c Release -o publish
+    
+    - name: Remove frontend files
+      run: |
+        rm -rf publish/wwwroot
+        rm -f publish/web.config
+    
+    # 🔴 STEP 1: Upload app_offline.htm FIRST
+    - name: Upload app_offline.htm to stop application
+      run: |
+        sudo apt-get install -y lftp
+        echo "<html><body><h2>Maintenance in progress...</h2></body></html>" > app_offline.htm
+        lftp -c "open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; put -O / app_offline.htm; bye"
+    
+    # ⏳ STEP 2: Wait for application to shut down
+    - name: Wait for application shutdown
+      run: |
+        echo "⏳ Waiting 30 seconds for IIS to detect app_offline.htm and shutdown the application..."
+        sleep 30
+        echo "✅ Application should now be offline"
+    
+    # 🚀 STEP 3: Deploy everything (app is now offline)
+    - name: Deploy to FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: publish/
+        server-dir: /
+        dangerous-clean-slate: false
+    
+    # 🟢 STEP 4: Remove app_offline.htm to restart application
+    - name: Remove app_offline.htm
+      run: |
+        lftp -c "open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; rm -f /app_offline.htm; bye" || echo "✓ app_offline.htm removed"
+    
+    - name: Done
+      run: echo "✅ Deployment completed successfully"
