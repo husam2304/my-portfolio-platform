@@ -224,3 +224,4 @@ Deploy the `dist` folder to a static hosting provider such as:
 ## License
 
 This project is for personal portfolio use.
+commit to test deploy
