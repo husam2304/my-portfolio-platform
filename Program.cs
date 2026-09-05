@@ -127,15 +127,15 @@ using (var scope = app.Services.CreateScope())
 }
 
 // ── Middleware pipeline ───────────────────────────────────────
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Portfolio API v1");
         c.RoutePrefix = "swagger";
     });
-}
+// }
 
 app.UseStaticFiles();
 app.UseCors("FrontendPolicy");
