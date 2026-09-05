@@ -96,7 +96,7 @@ jobs:
             set ssl:verify-certificate false;
             open ftp://${{ secrets.FTP_SERVER }};
             user '${{ secrets.FTP_USERNAME }}' '${{ secrets.FTP_PASSWORD }}';
-            put app_offline.htm -o /app_offline.htm;
+            put app_offline.htm -o /wwwroot/app_offline.htm;
             bye
           "
 
@@ -124,7 +124,7 @@ jobs:
           port: 21
 
           local-dir: publish/
-          server-dir: /
+          server-dir: /wwwroot/
 
           dangerous-clean-slate: false
 
@@ -140,7 +140,7 @@ jobs:
             set ssl:verify-certificate false;
             open ftp://${{ secrets.FTP_SERVER }};
             user '${{ secrets.FTP_USERNAME }}' '${{ secrets.FTP_PASSWORD }}';
-            rm -f /app_offline.htm;
+            rm -f /wwwroot/app_offline.htm;
             bye
           "
 
