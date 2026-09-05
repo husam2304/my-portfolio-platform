@@ -2,7 +2,7 @@ name: Deploy to SmarterASP.NET
 on:
   push:
     branches:
-      - BackEnd
+      - Backend
   workflow_dispatch:
 jobs:
   deploy:
