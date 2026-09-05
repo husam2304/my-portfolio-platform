@@ -13,7 +13,7 @@ import { AUTH_STORAGE_KEYS, LANGUAGE_STORAGE_KEYS } from "../../utiles/keys";
 // ── Storage keys ────────────────────────────────────────────
 
 // ── Base URL — update to your real server ───────────────────
-const BASE_URL = '/api'; // Fallback to localhost if env variable is not set
+const BASE_URL = AUTH_STORAGE_KEYS.Base_URL || AUTH_STORAGE_KEYS; // Fallback to localhost if env variable is not set
 
 // ── Create instance ─────────────────────────────────────────
 const apiClient: AxiosInstance = axios.create({
